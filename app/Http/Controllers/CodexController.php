@@ -15,7 +15,7 @@ class CodexController extends Controller
     $codexEntries = Codex::orderBy('type')->orderBy('name')->get()->groupBy('type');
     /** @var \Illuminate\View\View $view */
     $view =  view('outline.codex.index', compact('codexEntries'));
-    return $view->fragment('chapter-list');
+    return $view->fragment('codex-entry-list');
   }
 
   /**
