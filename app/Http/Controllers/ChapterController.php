@@ -10,7 +10,9 @@ class ChapterController extends Controller
     public function index()
     {
         $chapters = Chapter::orderBy('order')->get();
-        return view('outline.chapters.index', compact('chapters'));
+        /** @var \Illuminate\View\View $view */
+        $view = view('outline.chapters.index', compact('chapters'));
+        return $view->fragment('chapter-list');
     }
 
     public function show(Chapter $chapter)
@@ -63,8 +65,7 @@ class ChapterController extends Controller
         $chapter->delete();
 
         Chapter::where('order', '>', $deletedOrder)->decrement('order');
-        
+
         return redirect()->route('outline.chapters.index');
     }
-
 }
