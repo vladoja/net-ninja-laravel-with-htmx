@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class ChapterController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $isHtmx = $request->hasHeader('HX-Request');
         $chapters = Chapter::orderBy('order')->get();
         /** @var \Illuminate\View\View $view */
         $view = view('outline.chapters.index', compact('chapters'));
-        return $view->fragment('chapter-list');
+        return $view->fragmentIf($isHtmx, 'chapter-list');
     }
 
     public function show(Chapter $chapter)
