@@ -25,7 +25,10 @@
                         <ul>
                             @foreach ($codexEntries[$type] as $entry)
                                 <li class="codex-entry" id="codex-entry-{{ $entry->id }}">
-                                    <a href="{{ route('outline.codex.show', $entry) }}">
+                                    <a href="{{ route('outline.codex.show', $entry) }}"
+                                        @if ($isHtmx) hx-get="{{ route('outline.codex.show', $entry) }}"
+                                        hx-target="#swap"
+                                        hx-swap="innerHTML" @endif>
                                         {{ $entry->name }}
                                     </a>
                                 </li>
