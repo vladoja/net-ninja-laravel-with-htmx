@@ -12,7 +12,7 @@ class ChapterController extends Controller
         $isHtmx = $request->hasHeader('HX-Request');
         $chapters = Chapter::orderBy('order')->get();
         /** @var \Illuminate\View\View $view */
-        $view = view('outline.chapters.index', compact('chapters'));
+        $view = view('outline.chapters.index', compact('chapters', 'isHtmx'));
         return $view->fragmentIf($isHtmx, 'chapter-list');
     }
 
