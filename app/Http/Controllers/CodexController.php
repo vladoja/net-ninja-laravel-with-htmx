@@ -15,7 +15,7 @@ class CodexController extends Controller
     $isHtmx = $request->hasHeader('HX-Request');
     $codexEntries = Codex::orderBy('type')->orderBy('name')->get()->groupBy('type');
     /** @var \Illuminate\View\View $view */
-    $view =  view('outline.codex.index', compact('codexEntries'));
+    $view =  view('outline.codex.index', compact('codexEntries', 'isHtmx'));
     return $view->fragmentIf($isHtmx, 'codex-entry-list');
   }
 
