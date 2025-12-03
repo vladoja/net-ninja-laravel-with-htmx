@@ -16,14 +16,20 @@ class ChapterController extends Controller
         return $view->fragmentIf($isHtmx, 'chapter-list');
     }
 
-    public function show(Chapter $chapter)
+    public function show(Request $request, Chapter $chapter)
     {
-        return view('outline.chapters.show', compact('chapter'));
+        $isHtmx = $request->hasHeader('HX-Request');
+        /** @var \Illuminate\View\View $view */
+        $view = view('outline.chapters.show', compact('chapter', 'isHtmx'));
+        return $view->fragmentIf($isHtmx, 'chapter-details');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('outline.chapters.create');
+        $isHtmx = $request->hasHeader('HX-Request');
+        /** @var \Illuminate\View\View $view */
+        $view =  view('outline.chapters.create');
+        return $view->fragmentIf($isHtmx, 'chapter-create-form');
     }
 
     public function store(Request $request)
