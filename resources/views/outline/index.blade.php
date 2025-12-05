@@ -11,7 +11,10 @@
 
         </div>
 
-        <div class="modal-container">
+        <div class="modal-container"
+            hx-on:click="        const modal = document.getElementById('modal');
+        if (!modal.contains(event.target)) modal.innerHTML = '';">
+            >
             <div class="modal-content" id="modal"></div>
         </div>
 
