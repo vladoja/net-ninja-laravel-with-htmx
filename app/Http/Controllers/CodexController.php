@@ -22,9 +22,12 @@ class CodexController extends Controller
   /**
    * Show the form for creating a new codex entry.
    */
-  public function create()
+  public function create(Request $request)
   {
-    return view('outline.codex.create');
+    $isHtmx = $request->hasHeader('HX-Request');
+    /** @var \Illuminate\View\View $view */
+    $view = view('outline.codex.create');
+    return $view->fragmentIf($isHtmx, 'codex-create-form');
   }
 
   /**
@@ -47,9 +50,12 @@ class CodexController extends Controller
   /**
    * Display the specified codex entry.
    */
-  public function show(Codex $codex)
+  public function show(Request $request, Codex $codex)
   {
-    return view('outline.codex.show', compact('codex'));
+    $isHtmx = $request->hasHeader('HX-Request');
+    /** @var \Illuminate\View\View $view */
+    $view = view('outline.codex.show', compact('codex', 'isHtmx'));
+    return $view->fragmentIf($isHtmx, 'codex-details');
   }
 
   /**
