@@ -9,7 +9,7 @@
   <!-- HTMX -->
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   
-  @vite('resources/css/app.css')
+  @vite([ 'resources/css/app.css', 'resources/js/app.js' ])
   @stack('head')
 </head>
 
