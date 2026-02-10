@@ -4,7 +4,7 @@
     <h1 class="page-title">Codex</h1>
 
     @fragment('codex-entry-list')
-        <div class="codex-list content" id="codex-list">
+        <div class="codex-list content" id="codex-list" x-data="{ filter: 'none' }">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-xl ml-2 font-bold">Codex Entries</h2>
                 <a href="{{ route('outline.codex.create') }}" class="btn inline-block"
@@ -13,6 +13,15 @@
                     Add a New Codex Entry
                 </a>
             </div>
+
+            @if ($isHtmx)
+                <div class="filters mb-4">
+                    <p>Filters:</p>
+                    <button class="btn btn-tertiary" x-on:click="filter != 'all'? filter = 'all' : filter = 'none'"
+                        :class="{ 'active': filter === 'all' }">
+                        All</button>
+                </div>
+            @endif
 
             @php
                 $types = ['character', 'item', 'location'];

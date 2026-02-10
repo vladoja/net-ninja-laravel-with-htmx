@@ -19,6 +19,23 @@ body {
 .btn {
   @apply bg-indigo-500 text-white px-4 py-2 rounded-sm cursor-pointer;
 }
+
+.btn-primary {
+  @apply bg-indigo-500 text-white;
+}
+
+.btn-secondary {
+  @apply bg-gray-500 text-white;
+}
+
+.btn-tertiary {
+  @apply bg-gray-300 text-gray-700;
+}
+
+.active {
+  @apply bg-stone-800 text-white;
+}
+
 .site-header {
   @apply bg-white py-4 px-8;
 
