@@ -159,3 +159,17 @@ body {
 .modal-container:has(form, .chapter-details) .modal-content {
   @apply my-12 mx-auto p-12 bg-white rounded-sm max-w-200;
 }
+
+
+
+/* filter buttons */
+.filters {
+  @apply mb-4 flex gap-2 items-center justify-end;
+
+  button {
+    @apply border-dashed border-1 py-1 px-2 rounded-sm;
+  }
+  button.active {
+    @apply bg-gray-500 text-white border-solid;
+  }
+}
