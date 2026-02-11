@@ -4,7 +4,7 @@
     <h1 class="page-title">Codex</h1>
 
     @fragment('codex-entry-list')
-        <div class="codex-list content" id="codex-list" x-data="{ filter: 'all' }">
+        <div class="codex-list content" id="codex-list">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-xl ml-2 font-bold">Codex Entries</h2>
                 <a href="{{ route('outline.codex.create') }}" class="btn inline-block"
@@ -17,19 +17,19 @@
             @if ($isHtmx)
                 <div class="filters mb-4">
                     <p>Filters:</p>
-                    <button class="btn btn-tertiary" x-on:click="filter = 'all'" :class="{ 'active': filter === 'all' }">
+                    <button class="btn btn-tertiary" x-on:click="$store.codex.filter = 'all'" :class="{ 'active': $store.codex.filter === 'all' }">
                         All</button>
-                    <button class="btn btn-tertiary" x-on:click="filter != 'character'? filter = 'character' : filter = 'all'"
-                        :class="{ 'active': filter === 'character' }">
+                    <button class="btn btn-tertiary" x-on:click="$store.codex.filter != 'character'? $store.codex.filter = 'character' : $store.codex.filter = 'all'"
+                        :class="{ 'active': $store.codex.filter === 'character' }">
                         Characters</button>
-                    <button class="btn btn-tertiary" x-on:click="filter != 'item'? filter = 'item' : filter = 'all'"
-                        :class="{ 'active': filter === 'item' }">
+                    <button class="btn btn-tertiary" x-on:click="$store.codex.filter != 'item'? $store.codex.filter = 'item' : $store.codex.filter = 'all'"
+                        :class="{ 'active': $store.codex.filter === 'item' }">
                         Items</button>
-                    <button class="btn btn-tertiary" x-on:click="filter != 'location'? filter = 'location' : filter = 'all'"
-                        :class="{ 'active': filter === 'location' }">
+                    <button class="btn btn-tertiary" x-on:click="$store.codex.filter != 'location'? $store.codex.filter = 'location' : $store.codex.filter = 'all'"
+                        :class="{ 'active': $store.codex.filter === 'location' }">
                         Locations</button>
                 </div>
-                <div x-text="filter" class="text-xl"></div>
+                <div x-text="$store.codex.filter" class="text-xl"></div>
             @endif
 
             @php
@@ -38,7 +38,7 @@
 
             @foreach ($types as $type)
                 @if (isset($codexEntries[$type]) && $codexEntries[$type]->count())
-                    <div class="codex-group codex-group-{{ $type }} mb-6" x-show="filter === 'all' || filter ==='{{$type}}'">
+                    <div class="codex-group codex-group-{{ $type }} mb-6" x-show="$store.codex.filter === 'all' || $store.codex.filter ==='{{$type}}'">
                         <h2>{{ ucfirst($type) }}s</h2>
                         <ul>
                             @foreach ($codexEntries[$type] as $entry)

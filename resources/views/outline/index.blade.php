@@ -34,3 +34,14 @@
         </noscript>
     </div>
 @endsection
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        // alpine store for codex state
+        Alpine.store('codex', {
+            filter: 'all',
+        })
+
+        console.log('Alpine init store. Current codex filter:', Alpine.store('codex').filter);
+    })
+</script>
