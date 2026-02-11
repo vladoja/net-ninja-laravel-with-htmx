@@ -38,7 +38,7 @@
 
             @foreach ($types as $type)
                 @if (isset($codexEntries[$type]) && $codexEntries[$type]->count())
-                    <div class="codex-group codex-group-{{ $type }} mb-6" x-show="">
+                    <div class="codex-group codex-group-{{ $type }} mb-6" x-show="filter === 'all' || filter ==='{{$type}}'">
                         <h2>{{ ucfirst($type) }}s</h2>
                         <ul>
                             @foreach ($codexEntries[$type] as $entry)
