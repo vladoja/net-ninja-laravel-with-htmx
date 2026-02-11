@@ -20,6 +20,15 @@
                     <button class="btn btn-tertiary" x-on:click="filter != 'all'? filter = 'all' : filter = 'none'"
                         :class="{ 'active': filter === 'all' }">
                         All</button>
+                    <button class="btn btn-tertiary" x-on:click="filter != 'character'? filter = 'character' : filter = 'none'"
+                        :class="{ 'active': filter === 'character' }">
+                        Characters</button>
+                    <button class="btn btn-tertiary" x-on:click="filter != 'item'? filter = 'item' : filter = 'none'"
+                        :class="{ 'active': filter === 'item' }">
+                        Items</button>
+                    <button class="btn btn-tertiary" x-on:click="filter != 'location'? filter = 'location' : filter = 'none'"
+                        :class="{ 'active': filter === 'location' }">
+                        Locations</button>
                 </div>
             @endif
 
@@ -29,7 +38,7 @@
 
             @foreach ($types as $type)
                 @if (isset($codexEntries[$type]) && $codexEntries[$type]->count())
-                    <div class="codex-group codex-group-{{ $type }}">
+                    <div class="codex-group codex-group-{{ $type }} mb-6" x-show="">
                         <h2>{{ ucfirst($type) }}s</h2>
                         <ul>
                             @foreach ($codexEntries[$type] as $entry)
